@@ -7,10 +7,9 @@ function ToDoList({
   onDeleteTask,
   onToggleTask,
 }) {
-  // Recibe tasks como prop
   return (
     <div className="mt-5 flex flex-col gap-3">
-      {tasks.length > 0 ? ( // Verifica si hay tareas
+      {tasks.length > 0 ? (
         tasks.map((task) => (
           <ToDoItem
             key={task.id}

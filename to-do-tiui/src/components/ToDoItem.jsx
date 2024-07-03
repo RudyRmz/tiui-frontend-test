@@ -30,7 +30,7 @@ function ToDoItem({ task, onEditTask, isEditing, onDeleteTask, onToggleTask }) {
       </section>
 
       <section className="flex items-center gap-1">
-        {isEditing ? ( // Renderizado condicional
+        {isEditing ? (
           <>
             <TextField
               value={taskDescription}
@@ -40,24 +40,13 @@ function ToDoItem({ task, onEditTask, isEditing, onDeleteTask, onToggleTask }) {
           </>
         ) : (
           <>
-            <AppDialog
-              type="edit"
-              task={task} // Pasa la tarea al diálogo
-              onEditTask={onEditTask}
-            />
+            <AppDialog type="edit" task={task} onEditTask={onEditTask} />
             <IconButton aria-label="delete" onClick={handleDelete}>
               <Delete />
             </IconButton>
           </>
         )}
       </section>
-
-      {/* <section className=" flex items-center gap-1">
-        <AppDialog type="edit" />
-        <IconButton aria-label="delete">
-          <Delete />
-        </IconButton>
-      </section> */}
     </div>
   );
 }

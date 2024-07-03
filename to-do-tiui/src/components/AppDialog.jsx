@@ -15,13 +15,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 function AppDialog({
-  children,
   icon,
   color,
   type,
   task,
   onAddTask,
   onEditTask,
+  setSnackbarOpen,
 }) {
   const [open, setOpen] = React.useState(false);
   const [taskDescription, setTaskDescription] = useState(
@@ -29,9 +29,8 @@ function AppDialog({
   );
 
   useEffect(() => {
-    // Actualiza taskDescription cada vez que cambia la tarea
     setTaskDescription(task?.description || "");
-  }, [task]); // Dependencia de task
+  }, [task]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,10 +41,13 @@ function AppDialog({
   };
 
   const handleSaveTask = () => {
+    if (taskDescription.trim().length < 5) {
+      setSnackbarOpen(true);
+      return;
+    }
     if (type === "new") {
       onAddTask(taskDescription);
     } else if (type === "edit" && task) {
-      // Verifica si task existe
       onEditTask(task.id, taskDescription);
     }
 
@@ -90,8 +92,8 @@ function AppDialog({
             label="Descripción"
             variant="filled"
             className=" mt-10 w-full"
-            value={taskDescription} // Vincula el valor al estado
-            onChange={(e) => setTaskDescription(e.target.value)} // Actualiza el estado
+            value={taskDescription}
+            onChange={(e) => setTaskDescription(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

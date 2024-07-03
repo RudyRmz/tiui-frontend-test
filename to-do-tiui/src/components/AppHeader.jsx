@@ -2,8 +2,7 @@ import AppDialog from "./AppDialog";
 import AppSelect from "./AppSelect";
 import Add from "@mui/icons-material/add";
 
-function AppHeader({ onAddTask, onFilterChange }) {
-  // Recibe onAddTask como prop
+function AppHeader({ onAddTask, onFilterChange, setSnackbarOpen }) {
   return (
     <header className="flex justify-between mx-5">
       <AppDialog
@@ -11,6 +10,7 @@ function AppHeader({ onAddTask, onFilterChange }) {
         color={"primary"}
         type={"new"}
         onAddTask={onAddTask}
+        setSnackbarOpen={setSnackbarOpen}
       />
 
       <AppSelect onFilterChange={onFilterChange} />
