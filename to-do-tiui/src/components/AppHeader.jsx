@@ -6,7 +6,7 @@ function AppHeader() {
   return (
     <header className=" flex justify-between mx-5">
       <Button icon={<Add />} color={"primary"}>
-        Añadir tarea
+        <p className=" hidden sm:flex">Añadir tarea</p>
       </Button>
       <AppSelect />
     </header>

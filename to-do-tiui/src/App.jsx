@@ -1,6 +1,6 @@
 import PageTitle from "./components/PageTitle";
 import AppHeader from "./components/AppHeader";
-import ToDoItem from "./components/ToDoItem";
+import ToDoList from "./components/ToDoList";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <PageTitle>Todo Tiui</PageTitle>
       <div className=" max-w-3xl w-full m-auto border border-red-700">
         <AppHeader />
-        <ToDoItem />
+        <ToDoList />
       </div>
     </>
   );
