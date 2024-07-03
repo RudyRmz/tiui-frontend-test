@@ -1,8 +1,23 @@
-# React + Vite
+## Instrucciones para Ejecutar el Proyecto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para ejecutar este proyecto de lista de tareas (To-Do List) en tu máquina local, sigue estos pasos:
 
-Currently, two official plugins are available:
+1. Clonar el repositorio:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Abre tu terminal o línea de comandos.
+- Navega a la carpeta donde deseas almacenar el proyecto.
+- Ejecuta el siguiente comando para clonar el repositorio:
+  git clone https://github.com/RudyRmz/tiui-frontend-test.git
+
+2. Instalar dependencias:
+
+- Navega a la carpeta del proyecto:
+  cd tiui-frontend-test
+- Instala las dependencias del proyecto:
+  npm install
+
+3. Iniciar el servidor de desarrollo:
+   npm run dev
+
+4. Abrir en el navegador:
+   -El servidor de desarrollo se iniciará y la aplicación estará disponible en tu navegador, generalmente en la dirección http://localhost:5173/ (o similar).
