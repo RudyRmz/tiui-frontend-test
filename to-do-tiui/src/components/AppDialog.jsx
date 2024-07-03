@@ -8,13 +8,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import TextField from "@mui/material/TextField";
 import Edit from "@mui/icons-material/edit";
+import { useState } from "react"; // Importa useState
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function AppDialog({ children, icon, color, type }) {
+function AppDialog({ children, icon, color, type, onAddTask }) {
   const [open, setOpen] = React.useState(false);
+  const [taskDescription, setTaskDescription] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,6 +24,15 @@ function AppDialog({ children, icon, color, type }) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleAddTask = () => {
+    if (taskDescription.trim() !== "") {
+      // Verifica si no está vacío
+      onAddTask(taskDescription); // Llama a la función de agregar tarea
+      setTaskDescription(""); // Limpia el campo
+      handleClose();
+    }
   };
 
   return (
@@ -34,7 +45,7 @@ function AppDialog({ children, icon, color, type }) {
           onClick={handleClickOpen}
         >
           {icon}
-          {children}
+          <p className=" hidden sm:flex">Añadir tarea</p>
         </Button>
       ) : (
         <IconButton aria-label="edit" onClick={handleClickOpen}>
@@ -42,7 +53,7 @@ function AppDialog({ children, icon, color, type }) {
         </IconButton>
       )}
       <Dialog
-        fullWidth={" w-full"}
+        fullWidth={true}
         maxWidth={" max-w-[700px]"}
         open={open}
         TransitionComponent={Transition}
@@ -61,11 +72,13 @@ function AppDialog({ children, icon, color, type }) {
             label="Descripción"
             variant="filled"
             className=" mt-10 w-full"
+            value={taskDescription} // Vincula el valor al estado
+            onChange={(e) => setTaskDescription(e.target.value)} // Actualiza el estado
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleClose}>Añadir</Button>
+          <Button onClick={handleAddTask}>Añadir</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
