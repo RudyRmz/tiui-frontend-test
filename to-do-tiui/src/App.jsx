@@ -5,7 +5,9 @@ function App() {
   return (
     <>
       <PageTitle>Todo Tiui</PageTitle>
-      <AppHeader />
+      <div className=" max-w-3xl w-full m-auto ">
+        <AppHeader />
+      </div>
     </>
   );
 }

@@ -3,7 +3,7 @@ import AppSelect from "./AppSelect";
 
 function AppHeader() {
   return (
-    <header>
+    <header className=" flex justify-between mx-5">
       <Button>Añadir tarea</Button>
       <AppSelect />
     </header>
