@@ -27,6 +27,10 @@ function App() {
     setEditingTask(null); // Cierra el diálogo de edición
   };
 
+  const handleDeleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
   return (
     <>
       <PageTitle>Todo Tiui</PageTitle>
@@ -36,6 +40,7 @@ function App() {
           tasks={tasks}
           onEditTask={handleEditTask}
           editingTask={editingTask}
+          onDeleteTask={handleDeleteTask}
         />
       </div>
     </>

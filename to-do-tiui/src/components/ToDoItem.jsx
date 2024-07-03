@@ -3,11 +3,15 @@ import { Checkbox, IconButton } from "@mui/material";
 import Delete from "@mui/icons-material/clear";
 import AppDialog from "./AppDialog";
 
-function ToDoItem({ task, onEditTask, isEditing }) {
+function ToDoItem({ task, onEditTask, isEditing, onDeleteTask }) {
   const [taskDescription, setTaskDescription] = useState(task.description);
 
   const handleSaveTask = () => {
     onEditTask(task.id, taskDescription);
+  };
+
+  const handleDelete = () => {
+    onDeleteTask(task.id);
   };
 
   return (
@@ -33,7 +37,7 @@ function ToDoItem({ task, onEditTask, isEditing }) {
               task={task} // Pasa la tarea al diálogo
               onEditTask={onEditTask}
             />
-            <IconButton aria-label="delete">
+            <IconButton aria-label="delete" onClick={handleDelete}>
               <Delete />
             </IconButton>
           </>
