@@ -1,9 +1,13 @@
 import Button from "@mui/material/Button";
-import Add from "@mui/icons-material/add";
 
-export default function AppButton({ children }) {
+export default function AppButton({ children, icon, color }) {
   return (
-    <Button variant="contained" startIcon={<Add />} className=" h-12">
+    <Button
+      variant="contained"
+      startIcon={icon}
+      className=" h-12"
+      color={color}
+    >
       {children}
     </Button>
   );
