@@ -10,16 +10,22 @@ function ToDoList({
   // Recibe tasks como prop
   return (
     <div className="mt-5 flex flex-col gap-3">
-      {tasks.map((task) => (
-        <ToDoItem
-          key={task.id}
-          task={task}
-          onEditTask={onEditTask} // Pasa onEditTask a ToDoItem
-          isEditing={task.id === editingTask?.id}
-          onDeleteTask={onDeleteTask} // Pasa onDeleteTask a ToDoItem
-          onToggleTask={onToggleTask}
-        />
-      ))}
+      {tasks.length > 0 ? ( // Verifica si hay tareas
+        tasks.map((task) => (
+          <ToDoItem
+            key={task.id}
+            task={task}
+            onEditTask={onEditTask}
+            isEditing={task.id === editingTask?.id}
+            onDeleteTask={onDeleteTask}
+            onToggleTask={onToggleTask}
+          />
+        ))
+      ) : (
+        <p className="text-center text-gray-500">
+          {"No hay tareas que mostrar"}
+        </p>
+      )}
     </div>
   );
 }
