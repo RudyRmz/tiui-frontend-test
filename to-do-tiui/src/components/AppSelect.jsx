@@ -1,13 +1,14 @@
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-function AppSelect() {
+function AppSelect({ onFilterChange }) {
   return (
     <>
       <Select
         displayEmpty
         defaultValue={"todas"}
         className=" h-12 w-36 bg-white"
+        onChange={onFilterChange}
       >
         <MenuItem value="todas">Todas</MenuItem>
         <MenuItem value="completadas">Completadas</MenuItem>

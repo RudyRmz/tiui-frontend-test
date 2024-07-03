@@ -3,7 +3,7 @@ import { Checkbox, IconButton } from "@mui/material";
 import Delete from "@mui/icons-material/clear";
 import AppDialog from "./AppDialog";
 
-function ToDoItem({ task, onEditTask, isEditing, onDeleteTask }) {
+function ToDoItem({ task, onEditTask, isEditing, onDeleteTask, onToggleTask }) {
   const [taskDescription, setTaskDescription] = useState(task.description);
 
   const handleSaveTask = () => {
@@ -14,10 +14,18 @@ function ToDoItem({ task, onEditTask, isEditing, onDeleteTask }) {
     onDeleteTask(task.id);
   };
 
+  const handleToggle = () => {
+    onToggleTask(task.id);
+  };
+
   return (
     <div className=" bg-white flex justify-between items-center rounded-md p-3 mx-5">
       <section className=" flex items-center gap-1">
-        <Checkbox color="success" />
+        <Checkbox
+          color="success"
+          checked={task.completed}
+          onChange={handleToggle}
+        />
         <p>{task.description}</p>
       </section>
 

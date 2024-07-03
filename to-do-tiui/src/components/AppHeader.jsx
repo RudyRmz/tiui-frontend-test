@@ -2,7 +2,7 @@ import AppDialog from "./AppDialog";
 import AppSelect from "./AppSelect";
 import Add from "@mui/icons-material/add";
 
-function AppHeader({ onAddTask }) {
+function AppHeader({ onAddTask, onFilterChange }) {
   // Recibe onAddTask como prop
   return (
     <header className="flex justify-between mx-5">
@@ -13,7 +13,7 @@ function AppHeader({ onAddTask }) {
         onAddTask={onAddTask}
       />
 
-      <AppSelect />
+      <AppSelect onFilterChange={onFilterChange} />
     </header>
   );
 }
