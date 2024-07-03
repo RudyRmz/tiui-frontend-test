@@ -1,5 +1,4 @@
-import { Checkbox } from "@mui/material";
-import AppButton from "./AppButton";
+import { Checkbox, IconButton } from "@mui/material";
 import Delete from "@mui/icons-material/clear";
 import Edit from "@mui/icons-material/edit";
 
@@ -12,12 +11,12 @@ function ToDoItem() {
       </section>
 
       <section className=" flex items-center gap-1">
-        <AppButton icon={<Edit />} color={"secondary"}>
-          Editar
-        </AppButton>
-        <AppButton icon={<Delete />} color={"error"}>
-          Eliminar
-        </AppButton>
+        <IconButton aria-label="delete">
+          <Edit />
+        </IconButton>
+        <IconButton aria-label="delete">
+          <Delete />
+        </IconButton>
       </section>
     </div>
   );
