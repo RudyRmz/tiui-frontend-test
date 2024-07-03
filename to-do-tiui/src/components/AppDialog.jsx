@@ -1,18 +1,19 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
+import IconButton from "@mui/material/IconButton";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import TextField from "@mui/material/TextField";
+import Edit from "@mui/icons-material/edit";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function AppDialog({ children, icon, color }) {
+function AppDialog({ children, icon, color, type }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -25,15 +26,21 @@ function AppDialog({ children, icon, color }) {
 
   return (
     <React.Fragment>
-      <Button
-        variant="contained"
-        className=" h-12 flex gap-2"
-        color={color}
-        onClick={handleClickOpen}
-      >
-        {icon}
-        {children}
-      </Button>
+      {type === "new" ? (
+        <Button
+          variant="contained"
+          className=" h-12 flex gap-2"
+          color={color}
+          onClick={handleClickOpen}
+        >
+          {icon}
+          {children}
+        </Button>
+      ) : (
+        <IconButton aria-label="edit" onClick={handleClickOpen}>
+          <Edit />
+        </IconButton>
+      )}
       <Dialog
         fullWidth={" w-full"}
         maxWidth={" max-w-[700px]"}
@@ -43,7 +50,11 @@ function AppDialog({ children, icon, color }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Nueva tarea"}</DialogTitle>
+        {type === "new" ? (
+          <DialogTitle>{"Nueva tarea"}</DialogTitle>
+        ) : (
+          <DialogTitle>{"Editar tarea"}</DialogTitle>
+        )}
         <DialogContent>
           <TextField
             id="outlined-basic"

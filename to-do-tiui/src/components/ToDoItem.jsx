@@ -1,6 +1,7 @@
 import { Checkbox, IconButton } from "@mui/material";
 import Delete from "@mui/icons-material/clear";
 import Edit from "@mui/icons-material/edit";
+import AppDialog from "./AppDialog";
 
 function ToDoItem() {
   return (
@@ -11,9 +12,10 @@ function ToDoItem() {
       </section>
 
       <section className=" flex items-center gap-1">
-        <IconButton aria-label="delete">
+        <AppDialog type="edit" />
+        {/* <IconButton aria-label="edit">
           <Edit />
-        </IconButton>
+        </IconButton> */}
         <IconButton aria-label="delete">
           <Delete />
         </IconButton>
