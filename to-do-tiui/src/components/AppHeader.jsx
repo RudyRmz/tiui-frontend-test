@@ -12,6 +12,7 @@ function AppHeader({ onAddTask }) {
         type={"new"}
         onAddTask={onAddTask}
       />
+
       <AppSelect />
     </header>
   );

@@ -8,15 +8,30 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import TextField from "@mui/material/TextField";
 import Edit from "@mui/icons-material/edit";
-import { useState } from "react"; // Importa useState
+import { useState, useEffect } from "react";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function AppDialog({ children, icon, color, type, onAddTask }) {
+function AppDialog({
+  children,
+  icon,
+  color,
+  type,
+  task,
+  onAddTask,
+  onEditTask,
+}) {
   const [open, setOpen] = React.useState(false);
-  const [taskDescription, setTaskDescription] = useState("");
+  const [taskDescription, setTaskDescription] = useState(
+    task?.description || ""
+  );
+
+  useEffect(() => {
+    // Actualiza taskDescription cada vez que cambia la tarea
+    setTaskDescription(task?.description || "");
+  }, [task]); // Dependencia de task
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,13 +41,16 @@ function AppDialog({ children, icon, color, type, onAddTask }) {
     setOpen(false);
   };
 
-  const handleAddTask = () => {
-    if (taskDescription.trim() !== "") {
-      // Verifica si no está vacío
-      onAddTask(taskDescription); // Llama a la función de agregar tarea
-      setTaskDescription(""); // Limpia el campo
-      handleClose();
+  const handleSaveTask = () => {
+    if (type === "new") {
+      onAddTask(taskDescription);
+    } else if (type === "edit" && task) {
+      // Verifica si task existe
+      onEditTask(task.id, taskDescription);
     }
+
+    setTaskDescription("");
+    handleClose();
   };
 
   return (
@@ -78,7 +96,7 @@ function AppDialog({ children, icon, color, type, onAddTask }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleAddTask}>Añadir</Button>
+          <Button onClick={handleSaveTask}>Añadir</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

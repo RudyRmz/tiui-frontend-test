@@ -5,6 +5,7 @@ import ToDoList from "./components/ToDoList";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [editingTask, setEditingTask] = useState(null);
 
   const handleAddTask = (newTaskDescription) => {
     setTasks([
@@ -16,12 +17,26 @@ function App() {
       },
     ]);
   };
+
+  const handleEditTask = (taskId, newDescription) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, description: newDescription } : task
+      )
+    );
+    setEditingTask(null); // Cierra el diálogo de edición
+  };
+
   return (
     <>
       <PageTitle>Todo Tiui</PageTitle>
       <div className=" max-w-3xl w-full m-auto">
         <AppHeader onAddTask={handleAddTask} />
-        <ToDoList tasks={tasks} />
+        <ToDoList
+          tasks={tasks}
+          onEditTask={handleEditTask}
+          editingTask={editingTask}
+        />
       </div>
     </>
   );
